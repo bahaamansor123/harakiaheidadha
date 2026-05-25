@@ -1,171 +1,193 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>معايدة عيد الأضحى</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Tahoma,sans-serif;
-    }
+<title>معايدة عيد الأضحى</title>
 
-    body{
-      background:#f3f3f3;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:100vh;
-      padding:20px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
 
-    .container{
-      width:100%;
-      max-width:500px;
-      background:#fff;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 10px 30px rgba(0,0,0,.1);
-    }
+<style>
 
-    .card{
-      position:relative;
-      width:100%;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    .card img{
-      width:100%;
-      display:block;
-    }
+body{
+    font-family:'Cairo',sans-serif;
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
 
-    #namePreview{
-      position:absolute;
-      bottom:80px;
-      left:50%;
-      transform:translateX(-50%);
-      color:white;
-      font-size:34px;
-      font-weight:bold;
-      text-shadow:0 4px 10px rgba(0,0,0,.5);
-      width:100%;
-      text-align:center;
-      padding:0 20px;
-    }
+.container{
+    width:100%;
+    max-width:520px;
+    background:#fff;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
 
-    .content{
-      padding:20px;
-    }
+.eid-image{
+    width:100%;
+    display:block;
+}
 
-    h1{
-      font-size:24px;
-      margin-bottom:10px;
-      text-align:center;
-    }
+.content{
+    padding:30px 20px;
+    text-align:center;
+}
 
-    p{
-      color:#666;
-      text-align:center;
-      margin-bottom:20px;
-      line-height:1.7;
-    }
+h1{
+    font-size:22px;
+    margin-bottom:10px;
+    color:#000;
+}
 
-    input{
-      width:100%;
-      padding:14px;
-      border-radius:14px;
-      border:1px solid #ddd;
-      font-size:16px;
-      margin-bottom:15px;
-      outline:none;
-    }
+.sub-text{
+    font-size:18px;
+    color:#666;
+    margin-bottom:20px;
+}
 
-    button{
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:14px;
-      background:#0f8b6d;
-      color:white;
-      font-size:16px;
-      cursor:pointer;
-      transition:.3s;
-    }
+input{
+    width:100%;
+    padding:16px;
+    border-radius:14px;
+    border:1px solid #ddd;
+    font-size:18px;
+    outline:none;
+    margin-bottom:15px;
+    font-family:'Cairo',sans-serif;
+}
 
-    button:hover{
-      opacity:.9;
-    }
+button{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    font-family:'Cairo',sans-serif;
+}
 
-    .footer{
-      text-align:center;
-      font-size:13px;
-      color:#888;
-      margin-top:15px;
-    }
-  </style>
+.show-btn{
+    background:#118d6d;
+    color:#fff;
+}
+
+.show-btn:hover{
+    opacity:0.9;
+}
+
+.download-btn{
+    background:#333;
+    color:#fff;
+    margin-top:10px;
+}
+
+.download-btn:hover{
+    opacity:0.9;
+}
+
+.result-name{
+    margin-top:25px;
+    font-size:32px;
+    color:#118d6d;
+    font-weight:800;
+}
+
+.footer{
+    margin-top:15px;
+    color:#777;
+    font-size:16px;
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <div class="card">
-      <!-- ضع اسم صورة المعايدة هنا -->
-      <img src="eid.png" alt="Eid Mubarak">
-
-      <div id="namePreview">
-        اسمك هنا
-      </div>
-    </div>
+    <!-- صورة المعايدة -->
+    <img 
+        id="eidImage"
+        class="eid-image"
+        src="eid.png"
+        alt="Eid Mubarak"
+    >
 
     <div class="content">
 
-      <h1>معايدة عيد الأضحى</h1>
+        <h1>معايدة عيد الأضحى</h1>
 
-      <p>
-        اكتب اسمك لتظهر المعايدة باسمك ✨
-      </p>
+        <p class="sub-text">
+            ✨ اكتب اسمك لتظهر المعايدة باسمك
+        </p>
 
-      <input
-        type="text"
-        id="nameInput"
-        placeholder="اكتب اسمك هنا"
-      >
+        <!-- إدخال الاسم -->
+        <input 
+            type="text"
+            id="nameInput"
+            placeholder="اكتب اسمك هنا"
+        >
 
-      <button onclick="updateName()">
-        عرض المعايدة
-      </button>
+        <!-- زر عرض -->
+        <button class="show-btn" onclick="showGreeting()">
+            عرض المعايدة
+        </button>
 
-      <div class="footer">
-        كل عام وأنتم بخير 🤍
-      </div>
+        <!-- زر تحميل -->
+        <button class="download-btn" onclick="downloadImage()">
+            تحميل المعايدة
+        </button>
+
+        <!-- الاسم -->
+        <div class="result-name" id="resultName"></div>
+
+        <div class="footer">
+            ♡ كل عام وأنتم بخير
+        </div>
 
     </div>
 
-  </div>
+</div>
 
-  <script>
-    function updateName(){
-      let name = document.getElementById("nameInput").value;
+<script>
 
-      if(name.trim() === ""){
-        name = "اسمك هنا";
-      }
+function showGreeting(){
 
-      document.getElementById("namePreview").innerText = name;
-    }
+    const name = document.getElementById("nameInput").value;
 
-    // قراءة الاسم من الرابط تلقائيًا
-    const params = new URLSearchParams(window.location.search);
-    const urlName = params.get("name");
+    document.getElementById("resultName").innerHTML = name;
 
-    if(urlName){
-      document.getElementById("namePreview").innerText = urlName;
-      document.getElementById("nameInput").value = urlName;
-    }
-  </script>
+}
+
+function downloadImage(){
+
+    const image = document.getElementById("eidImage").src;
+
+    const link = document.createElement('a');
+
+    link.href = image;
+
+    link.download = 'eid-greeting.png';
+
+    link.click();
+
+}
+
+</script>
 
 </body>
 </html>
