@@ -1,193 +1,42 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html dir="rtl" lang="ar">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>معايدة عيد الأضحى</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:'Cairo',sans-serif;
-    background:#f2f2f2;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    padding:20px;
-}
-
-.container{
-    width:100%;
-    max-width:520px;
-    background:#fff;
-    border-radius:24px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
-}
-
-.eid-image{
-    width:100%;
-    display:block;
-}
-
-.content{
-    padding:30px 20px;
-    text-align:center;
-}
-
-h1{
-    font-size:22px;
-    margin-bottom:10px;
-    color:#000;
-}
-
-.sub-text{
-    font-size:18px;
-    color:#666;
-    margin-bottom:20px;
-}
-
-input{
-    width:100%;
-    padding:16px;
-    border-radius:14px;
-    border:1px solid #ddd;
-    font-size:18px;
-    outline:none;
-    margin-bottom:15px;
-    font-family:'Cairo',sans-serif;
-}
-
-button{
-    width:100%;
-    padding:16px;
-    border:none;
-    border-radius:14px;
-    font-size:20px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-    font-family:'Cairo',sans-serif;
-}
-
-.show-btn{
-    background:#118d6d;
-    color:#fff;
-}
-
-.show-btn:hover{
-    opacity:0.9;
-}
-
-.download-btn{
-    background:#333;
-    color:#fff;
-    margin-top:10px;
-}
-
-.download-btn:hover{
-    opacity:0.9;
-}
-
-.result-name{
-    margin-top:25px;
-    font-size:32px;
-    color:#118d6d;
-    font-weight:800;
-}
-
-.footer{
-    margin-top:15px;
-    color:#777;
-    font-size:16px;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <title>بطاقة معايدة</title>
+    <style>
+        body { text-align: center; font-family: sans-serif; padding: 20px; }
+        canvas { max-width: 100%; height: auto; border: 1px solid #ccc; margin-top: 20px; }
+        input { padding: 10px; font-size: 16px; margin: 10px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
 </head>
-
 <body>
+    <h2>اكتب اسمك لتحميل بطاقة المعايدة</h2>
+    <input type="text" id="userName" placeholder="أدخل اسم الموظف هنا">
+    <button onclick="drawName()">توليد البطاقة</button>
+    <br>
+    <canvas id="eidCanvas"></canvas>
 
-<div class="container">
+    <script>
+        const canvas = document.getElementById('eidCanvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        img.src = 'eid.png'; // تأكد أن اسم الصورة يطابق ملفك تماماً
 
-    <!-- صورة المعايدة -->
-    <img 
-        id="eidImage"
-        class="eid-image"
-        src="eid.png"
-        alt="Eid Mubarak"
-    >
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+        };
 
-    <div class="content">
-
-        <h1>معايدة عيد الأضحى</h1>
-
-        <p class="sub-text">
-            ✨ اكتب اسمك لتظهر المعايدة باسمك
-        </p>
-
-        <!-- إدخال الاسم -->
-        <input 
-            type="text"
-            id="nameInput"
-            placeholder="اكتب اسمك هنا"
-        >
-
-        <!-- زر عرض -->
-        <button class="show-btn" onclick="showGreeting()">
-            عرض المعايدة
-        </button>
-
-        <!-- زر تحميل -->
-        <button class="download-btn" onclick="downloadImage()">
-            تحميل المعايدة
-        </button>
-
-        <!-- الاسم -->
-        <div class="result-name" id="resultName"></div>
-
-        <div class="footer">
-            ♡ كل عام وأنتم بخير
-        </div>
-
-    </div>
-
-</div>
-
-<script>
-
-function showGreeting(){
-
-    const name = document.getElementById("nameInput").value;
-
-    document.getElementById("resultName").innerHTML = name;
-
-}
-
-function downloadImage(){
-
-    const image = document.getElementById("eidImage").src;
-
-    const link = document.createElement('a');
-
-    link.href = image;
-
-    link.download = 'eid-greeting.png';
-
-    link.click();
-
-}
-
-</script>
-
+        function drawName() {
+            ctx.drawImage(img, 0, 0);
+            ctx.font = 'bold 50px Arial';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center';
+            const name = document.getElementById('userName').value;
+            ctx.fillText(name, canvas.width / 2, canvas.height / 2); // يمكنك تعديل الإحداثيات لتناسب مكان النص في تصميمك
+        }
+    </script>
 </body>
 </html>
